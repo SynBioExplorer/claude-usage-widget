@@ -5,13 +5,16 @@ struct ClaudeUsageWidgetApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
-        MenuBarExtra("Claude Usage", systemImage: "chart.bar.fill") {
-            ContentView()
+        MenuBarExtra("Claude Usage", systemImage: "gauge.medium") {
+            MenuBarView()
         }
         .menuBarExtraStyle(.window)
 
         Settings {
-            Text("Settings")
+            SettingsView(isPresented: .constant(true)) { _ in
+                // Notify app delegate to update refresh timer
+                appDelegate.updateRefreshInterval()
+            }
         }
     }
 }
