@@ -1,0 +1,329 @@
+request: "Implement a native macOS SwiftUI desktop widget displaying Claude Code usage metrics with liquid glass aesthetic, including menu bar app, widget extension, CLI parsing, and customizable colors"
+created_at: "2025-01-31T18:50:00Z"
+project_directory: "/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget"
+
+# Note: This is a greenfield SwiftUI/Xcode project. Due to the complexity of Xcode project
+# generation (pbxproj files, build settings, capabilities), this plan uses a SEQUENTIAL
+# approach where the Xcode project is created first, then parallel tasks add code files.
+
+tasks:
+  # Phase 0: Xcode Project Scaffolding (MUST run first)
+  - id: task-xcode-setup
+    description: "Create Xcode project with main app target and widget extension, configure App Groups capability, and set up project structure"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidget.xcodeproj/project.pbxproj"
+      - "ClaudeUsageWidget/ClaudeUsageWidget.xcodeproj/project.xcworkspace/contents.xcworkspacedata"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/ClaudeUsageWidgetApp.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/ContentView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Assets.xcassets/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Assets.xcassets/AppIcon.appiconset/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Assets.xcassets/AccentColor.colorset/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/ClaudeUsageWidget.entitlements"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Info.plist"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/ClaudeUsageWidgetExtension.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/ClaudeUsageWidgetExtensionBundle.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Assets.xcassets/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Assets.xcassets/AppIcon.appiconset/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Assets.xcassets/AccentColor.colorset/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Assets.xcassets/WidgetBackground.colorset/Contents.json"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/ClaudeUsageWidgetExtension.entitlements"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Info.plist"
+      - "ClaudeUsageWidget/Shared/Constants.swift"
+    files_read:
+      - "contracts/UsageDataProtocol.swift"
+      - "contracts/WidgetViewProtocol.swift"
+      - "demo_screenshot.png"
+    resources_write:
+      - "xcode:project"
+      - "capability:app-groups"
+    depends_on: []
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -list -project ClaudeUsageWidget.xcodeproj"
+        type: build
+        required: true
+        description: "Verify Xcode project is valid and lists targets"
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidget -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO"
+        type: build
+        required: true
+        description: "Verify project builds without code signing"
+    context: |
+      Create a complete Xcode project from scratch using xcodegen or manual pbxproj generation.
+      The project needs:
+      1. Main App Target: ClaudeUsageWidget (menu bar app, LSUIElement = true)
+      2. Widget Extension Target: ClaudeUsageWidgetExtension
+      3. App Groups capability on both targets: group.com.agf.claudewidget
+      4. macOS 14.0+ deployment target
+      5. Hardened Runtime enabled
+
+  # Phase 1: Shared Models (can run after Xcode setup)
+  - id: task-shared-models
+    description: "Implement shared data models and constants used by both main app and widget extension"
+    files_write:
+      - "ClaudeUsageWidget/Shared/Models/UsageData.swift"
+      - "ClaudeUsageWidget/Shared/Models/UserPreferences.swift"
+      - "ClaudeUsageWidget/Shared/Services/DataSharingService.swift"
+    files_read:
+      - "contracts/UsageDataProtocol.swift"
+      - "ClaudeUsageWidget/Shared/Constants.swift"
+    resources_write:
+      - "module:SharedModels"
+    depends_on:
+      - task-xcode-setup
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidget -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -20"
+        type: build
+        required: true
+        description: "Verify shared models compile with main app"
+    context: |
+      Implement the data models defined in contracts/UsageDataProtocol.swift.
+      These models are shared between the main app and widget extension via App Groups.
+      Key responsibilities:
+      - UsageData: Codable struct for CLI output data
+      - UserPreferences: Codable struct for color settings
+      - DataSharingService: Read/write to shared UserDefaults
+
+  # Phase 2: CLI Service (can run after shared models)
+  - id: task-cli-service
+    description: "Implement CLI execution and parsing service to fetch usage data from 'claude /usage' command"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Services/CLIService.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Services/UsageParser.swift"
+    files_read:
+      - "contracts/UsageDataProtocol.swift"
+      - "ClaudeUsageWidget/Shared/Models/UsageData.swift"
+    resources_write:
+      - "service:CLIService"
+    depends_on:
+      - task-shared-models
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidget -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -20"
+        type: build
+        required: true
+        description: "Verify CLI service compiles"
+    context: |
+      Implement the CLI service that:
+      1. Locates claude CLI (check ~/.local/bin/claude, /usr/local/bin/claude, PATH)
+      2. Executes 'claude /usage' via Process()
+      3. Parses output using regex patterns:
+         - Session: "Current session: (\d+)% used \(resets (.+)\)"
+         - Weekly all: "Current week \(all\): (\d+)% used \(resets (.+)\)"
+         - Weekly Sonnet: "Current week \(Sonnet\): (\d+)% used"
+      4. Returns UsageData model
+      Note: Requires hardened runtime exception for CLI execution in sandboxed app
+
+  # Phase 3: Widget Components (can run after shared models)
+  - id: task-widget-components
+    description: "Implement reusable widget UI components: GlassProgressBar, UsageRowView, LastUpdatedView"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/GlassProgressBar.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/UsageRowView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/LastUpdatedView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/GlassBackground.swift"
+    files_read:
+      - "contracts/WidgetViewProtocol.swift"
+      - "contracts/UsageDataProtocol.swift"
+      - "demo_screenshot.png"
+    resources_write:
+      - "component:GlassProgressBar"
+      - "component:UsageRowView"
+    depends_on:
+      - task-shared-models
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidgetExtension -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -20"
+        type: build
+        required: true
+        description: "Verify widget components compile"
+    context: |
+      Implement SwiftUI components for the widget matching the demo screenshot style:
+      1. GlassProgressBar: Progress bar with liquid glass effect, customizable fill color
+      2. UsageRowView: Row with title, subtitle (reset time), progress bar, percentage
+      3. LastUpdatedView: "Last updated: just now" footer with refresh icon
+      4. GlassBackground: Reusable glass/blur background effect
+      Match the visual style from demo_screenshot.png
+
+  # Phase 4: Widget Views (depends on components)
+  - id: task-widget-views
+    description: "Implement Small, Medium, and Large widget views and timeline provider"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/SmallWidgetView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/MediumWidgetView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/LargeWidgetView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/UsageTimelineProvider.swift"
+    files_read:
+      - "contracts/WidgetViewProtocol.swift"
+      - "contracts/UsageDataProtocol.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/GlassProgressBar.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/Views/Components/UsageRowView.swift"
+      - "ClaudeUsageWidget/Shared/Services/DataSharingService.swift"
+      - "demo_screenshot.png"
+    resources_write:
+      - "widget:small"
+      - "widget:medium"
+      - "widget:large"
+    depends_on:
+      - task-widget-components
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidgetExtension -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -20"
+        type: build
+        required: true
+        description: "Verify widget views compile"
+    context: |
+      Implement the three widget sizes:
+      1. SmallWidgetView: Session usage only with circular progress
+      2. MediumWidgetView: Session + Weekly All Models (matches demo screenshot)
+      3. LargeWidgetView: All three metrics with full details
+
+      Also implement UsageTimelineProvider:
+      - Reads data from shared UserDefaults via DataSharingService
+      - Creates timeline entries for WidgetKit
+      - Supports placeholder for widget gallery
+
+  # Phase 5: Main App Views (depends on CLI service)
+  - id: task-main-app-views
+    description: "Implement menu bar app views: MenuBarView, SettingsView, UsageView"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Views/MenuBarView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Views/SettingsView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Views/UsageView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/ViewModels/UsageViewModel.swift"
+    files_read:
+      - "contracts/UsageDataProtocol.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Services/CLIService.swift"
+      - "ClaudeUsageWidget/Shared/Models/UserPreferences.swift"
+      - "ClaudeUsageWidget/Shared/Services/DataSharingService.swift"
+      - "demo_screenshot.png"
+    resources_write:
+      - "view:MenuBar"
+      - "view:Settings"
+    depends_on:
+      - task-cli-service
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidget -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -20"
+        type: build
+        required: true
+        description: "Verify main app views compile"
+    context: |
+      Implement the menu bar app UI:
+      1. MenuBarView: Popover shown when clicking menu bar icon
+         - Shows current usage summary
+         - Refresh button
+         - Settings button
+         - Quit button
+      2. SettingsView: Color picker for each progress bar
+         - Session color picker
+         - Weekly all color picker
+         - Sonnet color picker
+         - Refresh interval setting
+      3. UsageView: Reusable usage display (similar to widget but for popover)
+      4. UsageViewModel: ObservableObject managing refresh logic
+
+  # Phase 6: App Integration (depends on all previous tasks)
+  - id: task-app-integration
+    description: "Integrate all components: update main app entry point, add AppDelegate for scheduling, wire up widget entry point"
+    files_write:
+      - "ClaudeUsageWidget/ClaudeUsageWidget/App/AppDelegate.swift"
+    files_read:
+      - "ClaudeUsageWidget/ClaudeUsageWidget/ClaudeUsageWidgetApp.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Views/MenuBarView.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidget/Services/CLIService.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/ClaudeUsageWidgetExtension.swift"
+      - "ClaudeUsageWidget/ClaudeUsageWidgetExtension/UsageTimelineProvider.swift"
+    resources_write:
+      - "integration:app"
+    depends_on:
+      - task-main-app-views
+      - task-widget-views
+    patch_intents:
+      - file: "ClaudeUsageWidget/ClaudeUsageWidget/ClaudeUsageWidgetApp.swift"
+        action: "update_app_entry"
+        intent:
+          add_app_delegate: true
+          add_menu_bar_extra: true
+      - file: "ClaudeUsageWidget/ClaudeUsageWidgetExtension/ClaudeUsageWidgetExtension.swift"
+        action: "update_widget_entry"
+        intent:
+          use_timeline_provider: "UsageTimelineProvider"
+          add_widget_views: true
+    verification:
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidget -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO"
+        type: build
+        required: true
+        description: "Full project build succeeds"
+      - command: "cd '/Users/felix/Library/CloudStorage/OneDrive-SharedLibraries-MacquarieUniversity/Australian Genome Foundry - AWS cloud infrastructure/14_Claude_Usage_widget/ClaudeUsageWidget' && xcodebuild -scheme ClaudeUsageWidgetExtension -destination 'platform=macOS' build CODE_SIGNING_ALLOWED=NO"
+        type: build
+        required: true
+        description: "Widget extension build succeeds"
+    context: |
+      Final integration:
+      1. AppDelegate: Background refresh scheduling with Timer
+         - Fetch usage every N minutes
+         - Store to shared UserDefaults
+         - Trigger widget timeline reload
+      2. Update ClaudeUsageWidgetApp.swift:
+         - Add @NSApplicationDelegateAdaptor
+         - Configure MenuBarExtra
+         - Set up as LSUIElement (no dock icon)
+      3. Update widget extension entry point to use timeline provider
+
+contracts:
+  - name: "UsageDataProtocol"
+    version: "43677e3"
+    file_path: "contracts/UsageDataProtocol.swift"
+    types:
+      - "UsageMetric"
+      - "UsageData"
+      - "UserPreferences"
+      - "ColorPreference"
+    protocols:
+      - "DataSharingServiceProtocol"
+      - "CLIServiceProtocol"
+      - "UsageParserProtocol"
+    consumers:
+      - "task-shared-models"
+      - "task-cli-service"
+      - "task-widget-views"
+      - "task-main-app-views"
+
+  - name: "WidgetViewProtocol"
+    version: "43677e3"
+    file_path: "contracts/WidgetViewProtocol.swift"
+    types:
+      - "ProgressBarConfiguration"
+      - "UsageRowConfiguration"
+      - "UsageWidgetEntry"
+      - "WidgetSizeCategory"
+      - "DefaultColors"
+    consumers:
+      - "task-widget-components"
+      - "task-widget-views"
+
+execution_order:
+  wave_1:
+    - task-xcode-setup
+  wave_2:
+    - task-shared-models
+  wave_3:
+    - task-cli-service
+    - task-widget-components
+  wave_4:
+    - task-widget-views
+    - task-main-app-views
+  wave_5:
+    - task-app-integration
+
+notes: |
+  This is a greenfield macOS SwiftUI project requiring Xcode project creation.
+
+  Key constraints:
+  1. Xcode project must be created first (task-xcode-setup) before any code can be added
+  2. Widget extension and main app share code via App Groups UserDefaults
+  3. CLI execution requires hardened runtime exception for notarization
+  4. macOS 14.0+ required for modern WidgetKit features
+
+  Parallelism limited by:
+  - Xcode project structure must exist before adding Swift files
+  - Shared models needed by both CLI service and widget components
+  - Widget views depend on widget components
+  - Integration depends on all pieces being ready
+
+  Maximum parallelism achieved in wave_3 (CLI + components) and wave_4 (views).
