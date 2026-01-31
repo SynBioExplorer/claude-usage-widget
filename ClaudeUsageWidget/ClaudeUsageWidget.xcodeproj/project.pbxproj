@@ -15,6 +15,18 @@
 		AA000001006 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001008 /* UsageData.swift */; };
 		AA000001007 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001009 /* UserPreferences.swift */; };
 		AA000001008 /* DataSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001010 /* DataSharingService.swift */; };
+		AA000001009 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001011 /* Protocols.swift */; };
+		AA000001010 /* ViewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001012 /* ViewConfigurations.swift */; };
+		AA000001011 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001013 /* UsageViewModel.swift */; };
+		AA000001012 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001014 /* MenuBarView.swift */; };
+		AA000001013 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001015 /* SettingsView.swift */; };
+		AA000001014 /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001016 /* UsageView.swift */; };
+		AA000001015 /* CLIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001017 /* CLIService.swift */; };
+		AA000001016 /* UsageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001018 /* UsageParser.swift */; };
+		AA000001017 /* GlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001019 /* GlassBackground.swift */; };
+		AA000001018 /* GlassProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001020 /* GlassProgressBar.swift */; };
+		AA000001019 /* LastUpdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001021 /* LastUpdatedView.swift */; };
+		AA000001020 /* UsageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001022 /* UsageRowView.swift */; };
 		AA000002001 /* ClaudeUsageWidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002001 /* ClaudeUsageWidgetExtensionBundle.swift */; };
 		AA000002002 /* ClaudeUsageWidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002002 /* ClaudeUsageWidgetExtension.swift */; };
 		AA000002003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100002003 /* Assets.xcassets */; };
@@ -23,6 +35,16 @@
 		AA000002006 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001008 /* UsageData.swift */; };
 		AA000002007 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001009 /* UserPreferences.swift */; };
 		AA000002008 /* DataSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001010 /* DataSharingService.swift */; };
+		AA000002009 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001011 /* Protocols.swift */; };
+		AA000002010 /* ViewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001012 /* ViewConfigurations.swift */; };
+		AA000002011 /* UsageTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002006 /* UsageTimelineProvider.swift */; };
+		AA000002012 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002007 /* SmallWidgetView.swift */; };
+		AA000002013 /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002008 /* MediumWidgetView.swift */; };
+		AA000002014 /* LargeWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002009 /* LargeWidgetView.swift */; };
+		AA000002015 /* WidgetGlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002010 /* WidgetGlassBackground.swift */; };
+		AA000002016 /* WidgetGlassProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002011 /* WidgetGlassProgressBar.swift */; };
+		AA000002017 /* WidgetLastUpdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002012 /* WidgetLastUpdatedView.swift */; };
+		AA000002018 /* WidgetUsageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002013 /* WidgetUsageRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +82,31 @@
 		AA100001008 /* UsageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageData.swift; sourceTree = "<group>"; };
 		AA100001009 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		AA100001010 /* DataSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSharingService.swift; sourceTree = "<group>"; };
+		AA100001011 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		AA100001012 /* ViewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfigurations.swift; sourceTree = "<group>"; };
+		AA100001013 /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
+		AA100001014 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		AA100001015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA100001016 /* UsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageView.swift; sourceTree = "<group>"; };
+		AA100001017 /* CLIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIService.swift; sourceTree = "<group>"; };
+		AA100001018 /* UsageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageParser.swift; sourceTree = "<group>"; };
+		AA100001019 /* GlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBackground.swift; sourceTree = "<group>"; };
+		AA100001020 /* GlassProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassProgressBar.swift; sourceTree = "<group>"; };
+		AA100001021 /* LastUpdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdatedView.swift; sourceTree = "<group>"; };
+		AA100001022 /* UsageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRowView.swift; sourceTree = "<group>"; };
 		AA100002001 /* ClaudeUsageWidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeUsageWidgetExtensionBundle.swift; sourceTree = "<group>"; };
 		AA100002002 /* ClaudeUsageWidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeUsageWidgetExtension.swift; sourceTree = "<group>"; };
 		AA100002003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA100002004 /* ClaudeUsageWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClaudeUsageWidgetExtension.entitlements; sourceTree = "<group>"; };
 		AA100002005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA100002006 /* UsageTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTimelineProvider.swift; sourceTree = "<group>"; };
+		AA100002007 /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
+		AA100002008 /* MediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
+		AA100002009 /* LargeWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeWidgetView.swift; sourceTree = "<group>"; };
+		AA100002010 /* WidgetGlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetGlassBackground.swift; path = GlassBackground.swift; sourceTree = "<group>"; };
+		AA100002011 /* WidgetGlassProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetGlassProgressBar.swift; path = GlassProgressBar.swift; sourceTree = "<group>"; };
+		AA100002012 /* WidgetLastUpdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetLastUpdatedView.swift; path = LastUpdatedView.swift; sourceTree = "<group>"; };
+		AA100002013 /* WidgetUsageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WidgetUsageRowView.swift; path = UsageRowView.swift; sourceTree = "<group>"; };
 		AA200001000 /* ClaudeUsageWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaudeUsageWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA200002000 /* ClaudeUsageWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClaudeUsageWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +166,10 @@
 		AA700001003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA700001006 /* Components */,
+				AA100001014 /* MenuBarView.swift */,
+				AA100001015 /* SettingsView.swift */,
+				AA100001016 /* UsageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,6 +177,8 @@
 		AA700001004 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA100001017 /* CLIService.swift */,
+				AA100001018 /* UsageParser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -138,8 +186,20 @@
 		AA700001005 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA100001013 /* UsageViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA700001006 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA100001019 /* GlassBackground.swift */,
+				AA100001020 /* GlassProgressBar.swift */,
+				AA100001021 /* LastUpdatedView.swift */,
+				AA100001022 /* UsageRowView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		AA700002001 /* ClaudeUsageWidgetExtension */ = {
@@ -148,6 +208,7 @@
 				AA700002002 /* Views */,
 				AA100002001 /* ClaudeUsageWidgetExtensionBundle.swift */,
 				AA100002002 /* ClaudeUsageWidgetExtension.swift */,
+				AA100002006 /* UsageTimelineProvider.swift */,
 				AA100002003 /* Assets.xcassets */,
 				AA100002004 /* ClaudeUsageWidgetExtension.entitlements */,
 				AA100002005 /* Info.plist */,
@@ -159,6 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				AA700002003 /* Components */,
+				AA100002007 /* SmallWidgetView.swift */,
+				AA100002008 /* MediumWidgetView.swift */,
+				AA100002009 /* LargeWidgetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +230,10 @@
 		AA700002003 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA100002010 /* WidgetGlassBackground.swift */,
+				AA100002011 /* WidgetGlassProgressBar.swift */,
+				AA100002012 /* WidgetLastUpdatedView.swift */,
+				AA100002013 /* WidgetUsageRowView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -176,6 +244,7 @@
 				AA700003002 /* Models */,
 				AA700003003 /* Services */,
 				AA100001005 /* Constants.swift */,
+				AA100001011 /* Protocols.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -185,6 +254,7 @@
 			children = (
 				AA100001008 /* UsageData.swift */,
 				AA100001009 /* UserPreferences.swift */,
+				AA100001012 /* ViewConfigurations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +383,18 @@
 				AA000001006 /* UsageData.swift in Sources */,
 				AA000001007 /* UserPreferences.swift in Sources */,
 				AA000001008 /* DataSharingService.swift in Sources */,
+				AA000001009 /* Protocols.swift in Sources */,
+				AA000001010 /* ViewConfigurations.swift in Sources */,
+				AA000001011 /* UsageViewModel.swift in Sources */,
+				AA000001012 /* MenuBarView.swift in Sources */,
+				AA000001013 /* SettingsView.swift in Sources */,
+				AA000001014 /* UsageView.swift in Sources */,
+				AA000001015 /* CLIService.swift in Sources */,
+				AA000001016 /* UsageParser.swift in Sources */,
+				AA000001017 /* GlassBackground.swift in Sources */,
+				AA000001018 /* GlassProgressBar.swift in Sources */,
+				AA000001019 /* LastUpdatedView.swift in Sources */,
+				AA000001020 /* UsageRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +408,16 @@
 				AA000002006 /* UsageData.swift in Sources */,
 				AA000002007 /* UserPreferences.swift in Sources */,
 				AA000002008 /* DataSharingService.swift in Sources */,
+				AA000002009 /* Protocols.swift in Sources */,
+				AA000002010 /* ViewConfigurations.swift in Sources */,
+				AA000002011 /* UsageTimelineProvider.swift in Sources */,
+				AA000002012 /* SmallWidgetView.swift in Sources */,
+				AA000002013 /* MediumWidgetView.swift in Sources */,
+				AA000002014 /* LargeWidgetView.swift in Sources */,
+				AA000002015 /* WidgetGlassBackground.swift in Sources */,
+				AA000002016 /* WidgetGlassProgressBar.swift in Sources */,
+				AA000002017 /* WidgetLastUpdatedView.swift in Sources */,
+				AA000002018 /* WidgetUsageRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
