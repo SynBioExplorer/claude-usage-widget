@@ -1,5 +1,23 @@
 import SwiftUI
 
+/// Simple glass background view for containerBackground API
+struct GlassBackgroundView: View {
+    var body: some View {
+        Color.clear
+            .background(.ultraThinMaterial)
+            .overlay(
+                LinearGradient(
+                    colors: [
+                        Color.white.opacity(0.15),
+                        Color.white.opacity(0.05)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+    }
+}
+
 /// A reusable glass/blur background effect for the widget
 /// Provides a modern macOS translucent appearance with subtle blur
 struct GlassBackground: View {
