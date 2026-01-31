@@ -12,11 +12,17 @@
 		AA000001003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100001003 /* Assets.xcassets */; };
 		AA000001004 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001004 /* AppDelegate.swift */; };
 		AA000001005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001005 /* Constants.swift */; };
+		AA000001006 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001008 /* UsageData.swift */; };
+		AA000001007 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001009 /* UserPreferences.swift */; };
+		AA000001008 /* DataSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001010 /* DataSharingService.swift */; };
 		AA000002001 /* ClaudeUsageWidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002001 /* ClaudeUsageWidgetExtensionBundle.swift */; };
 		AA000002002 /* ClaudeUsageWidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002002 /* ClaudeUsageWidgetExtension.swift */; };
 		AA000002003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100002003 /* Assets.xcassets */; };
 		AA000002004 /* ClaudeUsageWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA200002000 /* ClaudeUsageWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA000002005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001005 /* Constants.swift */; };
+		AA000002006 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001008 /* UsageData.swift */; };
+		AA000002007 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001009 /* UserPreferences.swift */; };
+		AA000002008 /* DataSharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001010 /* DataSharingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,9 @@
 		AA100001005 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA100001006 /* ClaudeUsageWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClaudeUsageWidget.entitlements; sourceTree = "<group>"; };
 		AA100001007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA100001008 /* UsageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageData.swift; sourceTree = "<group>"; };
+		AA100001009 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		AA100001010 /* DataSharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSharingService.swift; sourceTree = "<group>"; };
 		AA100002001 /* ClaudeUsageWidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeUsageWidgetExtensionBundle.swift; sourceTree = "<group>"; };
 		AA100002002 /* ClaudeUsageWidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeUsageWidgetExtension.swift; sourceTree = "<group>"; };
 		AA100002003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +183,8 @@
 		AA700003002 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AA100001008 /* UsageData.swift */,
+				AA100001009 /* UserPreferences.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 		AA700003003 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA100001010 /* DataSharingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +310,9 @@
 				AA000001002 /* ContentView.swift in Sources */,
 				AA000001004 /* AppDelegate.swift in Sources */,
 				AA000001005 /* Constants.swift in Sources */,
+				AA000001006 /* UsageData.swift in Sources */,
+				AA000001007 /* UserPreferences.swift in Sources */,
+				AA000001008 /* DataSharingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +323,9 @@
 				AA000002001 /* ClaudeUsageWidgetExtensionBundle.swift in Sources */,
 				AA000002002 /* ClaudeUsageWidgetExtension.swift in Sources */,
 				AA000002005 /* Constants.swift in Sources */,
+				AA000002006 /* UsageData.swift in Sources */,
+				AA000002007 /* UserPreferences.swift in Sources */,
+				AA000002008 /* DataSharingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
