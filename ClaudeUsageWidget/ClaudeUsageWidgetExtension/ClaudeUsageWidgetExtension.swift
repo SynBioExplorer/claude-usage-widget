@@ -7,6 +7,7 @@ struct ClaudeUsageWidgetExtension: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: UsageTimelineProvider()) { entry in
             ClaudeUsageWidgetExtensionEntryView(entry: entry)
+                .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Claude Usage")
         .description("Monitor your Claude Code usage limits")
@@ -20,31 +21,15 @@ struct ClaudeUsageWidgetExtensionEntryView: View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        Group {
-            switch family {
-            case .systemSmall:
-                SmallWidgetView(entry: entry)
-            case .systemMedium:
-                MediumWidgetView(entry: entry)
-            case .systemLarge:
-                LargeWidgetView(entry: entry)
-            default:
-                MediumWidgetView(entry: entry)
-            }
-        }
-        .containerBackground(for: .widget) {
-            Color.clear
-                .background(.ultraThinMaterial)
-                .overlay(
-                    LinearGradient(
-                        colors: [
-                            Color.white.opacity(0.15),
-                            Color.white.opacity(0.05)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+        switch family {
+        case .systemSmall:
+            SmallWidgetView(entry: entry)
+        case .systemMedium:
+            MediumWidgetView(entry: entry)
+        case .systemLarge:
+            LargeWidgetView(entry: entry)
+        default:
+            MediumWidgetView(entry: entry)
         }
     }
 }
