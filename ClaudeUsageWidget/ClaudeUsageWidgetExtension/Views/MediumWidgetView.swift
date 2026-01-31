@@ -67,9 +67,6 @@ struct MediumWidgetView: View {
         .padding(14)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .redacted(reason: entry.isPlaceholder ? .placeholder : [])
-        .containerBackground(for: .widget) {
-            GlassBackgroundView()
-        }
     }
 }
 

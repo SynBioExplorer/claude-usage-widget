@@ -69,9 +69,6 @@ struct SmallWidgetView: View {
         .padding(12)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .redacted(reason: entry.isPlaceholder ? .placeholder : [])
-        .containerBackground(for: .widget) {
-            GlassBackgroundView()
-        }
     }
 }
 
